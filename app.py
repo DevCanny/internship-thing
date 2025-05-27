@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 
 app = Flask(__name__)
-app.secret_key = 'super-secret-poggy-woggy'  # Change this to a random secret key
+app.secret_key = 'super-secret-poggy-woggy'
 
 # CSV file to store user data
 CSV_FILE = 'user_data.csv'
