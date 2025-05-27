@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Home - My Flask Web App{% endblock %}
+
+{% block content %}
+<div style="text-align: center;">
+    <h1>Welcome to My Flask Web App</h1>
+    <p style="font-size: 1.2em; color: #666; margin-bottom: 30px; line-height: 1.6;">
+        This is a simple web application built with Flask framework for the Python Practice Spring Internship project.
+        Explore the features using the navigation menu above!
+    </p>
+    
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 40px;">
+        <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 25px; border-radius: 15px; max-width: 300px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+            <h3 style="margin-bottom: 15px; color: white;">Share Your Feedback</h3>
+            <p style="margin-bottom: 20px; color: rgba(255,255,255,0.9);">We'd love to hear from you! Submit your feedback and help us improve.</p>
+            <a href="{{ url_for('form') }}" class="btn" style="background: rgba(255,255,255,0.2); border: 2px solid white;">Get Started</a>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 25px; border-radius: 15px; max-width: 300px; border: 1px solid rgba(255,255,255,0.2);">
+            <h3 style="margin-bottom: 15px;">View Submissions</h3>
+            <p style="margin-bottom: 20px; color: #666;">Check out all the feedback that has been submitted so far.</p>
+            <a href="{{ url_for('view_data') }}" class="btn">View Data</a>
+        </div>
+    </div>
+    
+    <div style="margin-top: 50px; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
+        <h3 style="color: #667eea; margin-bottom: 15px;">About This Project</h3>
+        <p style="color: #666; line-height: 1.6;">
+            This Flask web application demonstrates core web development concepts including routing, 
+            form handling, data processing, and file storage. It's designed as part of the 2025 Python 
+            Practice Spring Internship program.
+        </p>
+    </div>
+</div>
+{% endblock %}

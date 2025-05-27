@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}All Submissions - My Flask Web App{% endblock %}
+
+{% block content %}
+<div>
+    <h1>All Feedback Submissions</h1>
+    
+    {% if data %}
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">
+            Total submissions: <strong>{{ data|length }}</strong>
+        </p>
+        
+        <div style="overflow-x: auto;">
+            {% for submission in data %}
+                <div style="background: rgba(255,255,255,0.8); border: 1px solid #e1e5e9; border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s ease;" 
+                     onmouseenter="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.12)'"
+                     onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.08)'">
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                        <div>
+                            <h3 style="color: #333; margin: 0 0 5px 0; font-size: 1.3em;">{{ submission.Name }}</h3>
+                            <p style="color: #667eea; margin: 0; font-weight: 500;">{{ submission.Email }}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 500;">
+                                {{ submission.Timestamp }}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(102, 126, 234, 0.05); padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                        <strong style="color: #333; display: block; margin-bottom: 8px;">Feedback:</strong>
+                        <p style="color: #666; line-height: 1.6; margin: 0;">{{ submission.Feedback }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; padding: 20px; background: rgba(102, 126, 234, 0.05); border-radius: 10px;">
+            <p style="color: #666; margin-bottom: 15px;">Want to add your own feedback?</p>
+            <a href="{{ url_for('form') }}" class="btn">Submit Feedback</a>
+        </div>
+        
+    {% else %}
+        <div style="text-align: center; padding: 60px 20px; background: rgba(108, 117, 125, 0.05); border-radius: 15px; border: 2px dashed #dee2e6;">
+            <div style="font-size: 3em; margin-bottom: 20px; color: #6c757d;">📝</div>
+            <h2 style="color: #6c757d; margin-bottom: 15px;">No Submissions Yet</h2>
+            <p style="color: #6c757d; margin-bottom: 30px; font-size: 1.1em;">
+                Be the first to share your feedback! Your input helps us improve.
+            </p>
+            <a href="{{ url_for('form') }}" class="btn" style="font-size: 18px; padding: 15px 30px;">
+                Submit First Feedback
+            </a>
+        </div>
+    {% endif %}
+    
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="{{ url_for('home') }}" style="color: #667eea; text-decoration: none; font-weight: 500;">
+            ← Back to Home
+        </a>
+    </div>
+</div>
+
+<style>
+@media (max-width: 768px) {
+    .submission-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    
+    .submission-header > div:last-child {
+        text-align: left !important;
+        margin-top: 10px;
+    }
+}
+</style>
+{% endblock %}
